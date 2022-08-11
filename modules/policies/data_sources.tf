@@ -1,5 +1,5 @@
 module "global_variables" {
-  source = "../../global"
+  source = "../global"
 }
 
 data "aws_iam_policy" "codebuild-access-to-s3" {

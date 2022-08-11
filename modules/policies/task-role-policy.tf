@@ -1,13 +1,14 @@
 # Creating codebuild service role
 resource "aws_iam_role" "codebuild-service-role" {
-  assume_role_policy = aws_iam_policy_document.codebuild-service-role-policy
+  assume_role_policy = data.aws_iam_policy_document.codebuild-service-role-policy.json
   name = "codebuild-${module.global_variables.name_prefix}-role"
 }
 
+
 # Creating codebuild service role assume policy
-resource "aws_iam_policy_document" "codebuild-service-role-policy" {
+data "aws_iam_policy_document" "codebuild-service-role-policy" {
   statement {
-    sid     = ""
+    sid     = "codebuild-assume"
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
     
@@ -19,7 +20,7 @@ resource "aws_iam_policy_document" "codebuild-service-role-policy" {
 }
 
 # Creating codebuild service role base policy
-resource "aws_iam_policy_document" "codebuild-role-base-policy" {
+data "aws_iam_policy_document" "codebuild-role-base-policy" {
   statement {
     sid    = "CloudWatch"
     effect = "Allow"
@@ -66,7 +67,7 @@ resource "aws_iam_policy_document" "codebuild-role-base-policy" {
 }
 
 # Creating additional policies to grant access on other resources to codebuild service role
-resource "aws_iam_policy_document" "codebuild-access-to-lambda" {
+data "aws_iam_policy_document" "codebuild-access-to-lambda" {
   statement {
     sid       = "Update lambda"
     effect    = "Allow"
@@ -75,7 +76,7 @@ resource "aws_iam_policy_document" "codebuild-access-to-lambda" {
   }
 }
 
-resource "aws_iam_policy_document" "codebuild-access-to-s3" {
+data "aws_iam_policy_document" "codebuild-access-to-s3" {
   depends_on = [data.aws_iam_policy.codebuild-access-to-s3]
   statement {
     sid       = "VisualEditor0"

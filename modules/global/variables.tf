@@ -81,47 +81,48 @@ variable "private_subnet_ids" {
   }
 }
 
-variable "artifacts_type" {
-  description = "Need to enter NO_ARTIFACTS or CODEPIPELINE"
-  default = ""
-}
+#variable "artifacts_type" {
+#  description = "Need to enter NO_ARTIFACTS or CODEPIPELINE"
+#  default = ""
+#}
+#
+#variable "source_type" {
+#  description = "Need to enter CODEPIPELINE"
+#  default = ""
+#}
+#
+#variable "buildspec" {
+#  type = map(string)
+#  description = "buildspec path"
+#  default = {
+#    fj-lambdapipeline-prd = ""
+#    fj-lambdapipeline-uat = ""
+#    fj-lambdapipeline-sit = ""
+#  }
+#}
 
-variable "source_type" {
-  description = "Need to enter CODEPIPELINE"
-  default = ""
-}
-
-variable "buildspec" {
-  type = map(string)
-  description = "buildspec path"
-  default = {
-    fj-lambdapipeline-prd = ""
-    fj-lambdapipeline-uat = ""
-    fj-lambdapipeline-sit = ""
-  }
-}
-
-variable "environment_image" {
-  description = "aws/codebuild/standard:5.0"
-  default = "aws/codebuild/standard:5.0"
-}
+#variable "environment_image" {
+#  description = "aws/codebuild/standard:5.0"
+#  default = "aws/codebuild/standard:5.0"
+#}
+#
+#variable "environment_vars_type" {
+#  description = "Defines the env var type i.e. PLAINTEXT or PARAMETER_STORE"
+#  type = list(string)
+#  default = ["PLAINTEXT", "SECRETS_MANAGER", "PARAMETER_STORE"]
+#}
+#
+#variable "environment_variables" {
+#  type = list(any)
+#  description = "Add the environment vars for codebuild"
+#  default = []
+#}
 
 variable "environment_vars_type" {
   description = "Defines the env var type i.e. PLAINTEXT or PARAMETER_STORE"
   type = list(string)
   default = ["PLAINTEXT", "SECRETS_MANAGER", "PARAMETER_STORE"]
 }
-
-variable "environment_variable" {
-  type = list(object({
-    name = string
-    value = string
-    type = list(string)
-  }))
-  description = "Add the environment vars for codebuild"
-  default = []
-}
-
 
 variable "db_name" {
   type = map(string)

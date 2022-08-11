@@ -1,5 +1,5 @@
 module "global_variables" {
-  source = "../../global"
+  source = "../global"
 }
 
 module "policies" {
