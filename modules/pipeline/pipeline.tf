@@ -6,10 +6,15 @@ module "network" {
   source = "../network"
 }
 
+module "policies" {
+  source = "../policies"
+}
+
 
 module "build" {
   source = "../codebuild"
   project_name = module.global_variables.name_prefix
+  service_role = module.policies.codebuild_service_role_arn
   artifacts_type = "CODEPIPELINE"
   source_type = "CODEPIPELINE"
     environment_variables = [
@@ -26,7 +31,6 @@ module "build" {
       {
         name  = "REPOSITORY_URI"
         value = "${module.global_variables.account_id}.dkr.ecr.${module.global_variables.AWS_DEFAULT_REGION}.amazonaws.com/${module.global_variables.name_prefix}"
-        # Either reference a resource or fetch via data source
         type  = module.global_variables.environment_vars_type[0]
       }
     ]

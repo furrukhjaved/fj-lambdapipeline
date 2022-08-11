@@ -26,33 +26,9 @@ output "default_vpc_id" {
   value = var.default_vpc_id[terraform.workspace]
 }
 
-#
-#output "artifacts_type" {
-#  value = var.artifacts_type
-#}
-#
-#output "source_type" {
-#  value = var.source_type
-#}
-#
-#output "buildspec" {
-#  description = "buildspec path"
-#  value       = var.buildspec[terraform.workspace]
-#}
-#
-#output "environment_image" {
-#  description = "aws/codebuild/standard:5.0"
-#  value       = var.environment_image
-#}
-#
 output "environment_vars_type" {
   value = var.environment_vars_type
 }
-
-#output "environment_variables" {
-#  description = "Add the environment vars for codebuild"
-#  value = var.environment_variables
-#}
 
 
 output "app_count" {

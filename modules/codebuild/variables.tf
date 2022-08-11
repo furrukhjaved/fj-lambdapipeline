@@ -1,5 +1,9 @@
 variable "project_name" {}
 
+variable "service_role" {
+  description = "stores arn for the role"
+  default = ""
+}
 
 variable "artifacts_type" {
   description = "Need to enter NO_ARTIFACTS or CODEPIPELINE"
@@ -21,9 +25,6 @@ variable "buildspec" {
   description = "buildspec path"
   default = []
 }
-
-
-
 
 variable "environment_variables" {
   type = list(any)

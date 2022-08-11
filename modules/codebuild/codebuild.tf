@@ -1,7 +1,7 @@
 resource "aws_codebuild_project" "codebuild_project_template" {
   name          = var.project_name
   build_timeout = "5"
-  service_role  = module.policies.codebuild-service-role
+  service_role  = var.service_role
 
   source {
     type      = var.source_type
