@@ -1,25 +1,25 @@
 variable "app_count" {
   description = "How many ECS task instances we should run as part of the service"
-  default = 2
+  default     = 2
 }
 
 variable "account_id" {
   description = "AWS account IDs"
-  type = map(string)
+  type        = map(string)
   default = {
-    fj-lambdapipeline-prd = "764895352979"                     #SIT - This needs to be replaced by Main acc's VPC eu-west-1
+    fj-lambdapipeline-prd = "764895352979" #SIT - This needs to be replaced by Main acc's VPC eu-west-1
     fj-lambdapipeline-uat = "397446452146"
-    fj-lambdapipeline-sit = "764895352979"                     #SIT
+    fj-lambdapipeline-sit = "764895352979" #SIT
   }
 }
 
 variable "AWS_DEFAULT_REGION" {
   description = "Set at Workspace UI level"
-  default = ""
+  default     = ""
 }
 
 variable "name_prefix" {
-  type = map(string)
+  type        = map(string)
   description = "The prefix used before resource names"
   default = {
     fj-lambdapipeline-prd = "fj-lambdapipeline"
@@ -29,7 +29,7 @@ variable "name_prefix" {
 }
 
 variable "env" {
-  type = map(string)
+  type        = map(string)
   description = "The prefix used before resource names"
   default = {
     fj-lambdapipeline-prd = "Production"
@@ -41,8 +41,8 @@ variable "env" {
 variable "default_vpc_id" {
   type = map(string)
   default = {
-    fj-lambdapipeline-prd = "vpc-044dd3c34b06ad23a"     #SIT - This needs to be replaced by Main acc's VPC eu-west-1
-    fj-lambdapipeline-uat = "vpc-005e344a1d489c637"         #Main acc - Stockholm
+    fj-lambdapipeline-prd = "vpc-044dd3c34b06ad23a" #SIT - This needs to be replaced by Main acc's VPC eu-west-1
+    fj-lambdapipeline-uat = "vpc-005e344a1d489c637" #Main acc - Stockholm
     fj-lambdapipeline-sit = "vpc-044dd3c34b06ad23a"
   }
 }
@@ -50,34 +50,34 @@ variable "default_vpc_id" {
 variable "public_subnet_ids" {
   type = map(set(string))
   default = {
-    fj-lambdapipeline-prd = [                           #SIT - This needs to be replaced by Main acc's subnets eu-west-1
+    fj-lambdapipeline-prd = [ #SIT - This needs to be replaced by Main acc's subnets eu-west-1
       "subnet-0986c494aa261014a",
       "subnet-0e2ba44ee01606bc4",
-      "subnet-022e723b01c226385"]
-    fj-lambdapipeline-uat = [                           #Main acc - Stockholm
+    "subnet-022e723b01c226385"]
+    fj-lambdapipeline-uat = [ #Main acc - Stockholm
       "subnet-05ceca24b9864e6a6",
-      "subnet-072445f95a89c86ec"]
-    fj-lambdapipeline-sit = [                           #SIT
+    "subnet-072445f95a89c86ec"]
+    fj-lambdapipeline-sit = [ #SIT
       "subnet-0986c494aa261014a",
       "subnet-0e2ba44ee01606bc4",
-      "subnet-022e723b01c226385"]
+    "subnet-022e723b01c226385"]
   }
 }
 
 variable "private_subnet_ids" {
   type = map(set(string))
   default = {
-    fj-lambdapipeline-prd = [                           #SIT - This needs to be replaced by Main acc's subnets eu-west-1
+    fj-lambdapipeline-prd = [ #SIT - This needs to be replaced by Main acc's subnets eu-west-1
       "subnet-09c46bb2df17049ba",
       "subnet-0ecebcc8c6d7de714",
-      "subnet-065bff409cd172c75"]
-    fj-lambdapipeline-uat = [                               #Main acc - Stockholm
+    "subnet-065bff409cd172c75"]
+    fj-lambdapipeline-uat = [ #Main acc - Stockholm
       "subnet-05ceca24b9864e6a6",
-      "subnet-072445f95a89c86ec"]
-    fj-lambdapipeline-sit = [                               #SIT
+    "subnet-072445f95a89c86ec"]
+    fj-lambdapipeline-sit = [ #SIT
       "subnet-09c46bb2df17049ba",
       "subnet-0ecebcc8c6d7de714",
-      "subnet-065bff409cd172c75"]
+    "subnet-065bff409cd172c75"]
   }
 }
 
@@ -120,8 +120,8 @@ variable "private_subnet_ids" {
 
 variable "environment_vars_type" {
   description = "Defines the env var type i.e. PLAINTEXT or PARAMETER_STORE"
-  type = list(string)
-  default = ["PLAINTEXT", "SECRETS_MANAGER", "PARAMETER_STORE"]
+  type        = list(string)
+  default     = ["PLAINTEXT", "SECRETS_MANAGER", "PARAMETER_STORE"]
 }
 
 variable "db_name" {

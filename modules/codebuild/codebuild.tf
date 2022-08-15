@@ -3,12 +3,6 @@ resource "aws_codebuild_project" "codebuild_project_template" {
   build_timeout = "5"
   service_role  = var.service_role
 
-  source {
-    type      = var.source_type
-    #buildspec = var.buildspec
-  }
-  source_version = ""
-
   artifacts {
     type = var.artifacts_type
   }
@@ -19,16 +13,6 @@ resource "aws_codebuild_project" "codebuild_project_template" {
     type                        = "LINUX_CONTAINER"
     privileged_mode             = true
     image_pull_credentials_type = "CODEBUILD"
-
-    #    dynamic "environment_variable" {
-    #      for_each = module.global_variables.environment_variable
-    #      content {
-    #          name  = environment_variable.value.name
-    #          value = environment_variable.value.value
-    #          type  = environment_variable.value.type
-    #        }
-    #      }
-    #    }
 
     # Environment variables
     dynamic "environment_variable" {
@@ -41,17 +25,23 @@ resource "aws_codebuild_project" "codebuild_project_template" {
     }
   }
 
-    logs_config {
-      cloudwatch_logs {
-        status = "ENABLED"
-        #      group_name  = "log-group"
-        #      stream_name = "log-stream"
-      }
-
-      s3_logs {
-        status = "DISABLED"
-      }
+  logs_config {
+    cloudwatch_logs {
+      status = "ENABLED"
+      #      group_name  = "log-group"
+      #      stream_name = "log-stream"
     }
+
+    s3_logs {
+      status = "DISABLED"
+    }
+  }
+
+  source {
+    type = var.source_type
+    buildspec = var.buildspec
+  }
+  source_version = ""
 }
 
 

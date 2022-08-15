@@ -2,9 +2,9 @@ module "global_variables" {
   source = "../global"
 }
 
-data "aws_iam_policy" "codebuild-access-to-s3" {
-  arn = "arn:aws:iam::${module.global_variables.account_id}:policy/${module.global_variables.env}-lambda-builds-s3"
-}
+#data "aws_iam_policy" "codebuild-access-to-s3" {
+#  arn = "arn:aws:iam::${module.global_variables.account_id}:policy/${module.global_variables.env}-lambda-builds-s3"
+#}
 
 # Creating codebuild service role assume policy
 data "aws_iam_policy_document" "codebuild_service_role_assume_policy" {
@@ -78,7 +78,7 @@ data "aws_iam_policy_document" "codebuild_access_to_lambda" {
 }
 
 data "aws_iam_policy_document" "codebuild_access_to_s3" {
-  depends_on = [data.aws_iam_policy.codebuild-access-to-s3]
+  #depends_on = [data.aws_iam_policy.codebuild-access-to-s3]
   statement {
     sid       = "List buckets"
     effect    = "Allow"
