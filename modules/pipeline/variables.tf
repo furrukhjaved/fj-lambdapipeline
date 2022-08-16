@@ -1,7 +1,11 @@
-#variable "artifacts_type" {
-#  description = "Need to enter NO_ARTIFACTS or CODEPIPELINE"
-#}
-#
-#variable "source_type" {
-#  description = "Need to enter CODEPIPELINE"
-#}
+variable "stages" {
+  type = list(object({
+    type     = string
+    name     = string
+    provider = string
+    config    = map(string)
+    inputs   = list(string)
+    outputs  = list(string)
+  }))
+  default = []
+}

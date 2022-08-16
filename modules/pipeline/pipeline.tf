@@ -17,7 +17,7 @@ module "build" {
   service_role   = module.policies.codebuild_service_role_arn
   artifacts_type = "CODEPIPELINE"
   source_type    = "CODEPIPELINE"
-  buildspec      = ""                 # Add a filepath if required.
+  buildspec      = "" # Add a filepath if required.
   environment_variables = [
     {
       name  = "AWS_ACCOUNT_ID"
@@ -37,3 +37,6 @@ module "build" {
   ]
 
 }
+
+
+

@@ -38,7 +38,7 @@ resource "aws_codebuild_project" "codebuild_project_template" {
   }
 
   source {
-    type = var.source_type
+    type      = var.source_type
     buildspec = var.buildspec
   }
   source_version = ""

@@ -2,12 +2,8 @@ module "global_variables" {
   source = "../global"
 }
 
-#data "aws_iam_policy" "codebuild-access-to-s3" {
-#  arn = "arn:aws:iam::${module.global_variables.account_id}:policy/${module.global_variables.env}-lambda-builds-s3"
-#}
-
 # Creating codebuild service role assume policy
-data "aws_iam_policy_document" "codebuild_service_role_assume_policy" {
+data "aws_iam_policy_document" "codebuild_role_assume_policy" {
   statement {
     sid     = "codebuild-assume"
     effect  = "Allow"
