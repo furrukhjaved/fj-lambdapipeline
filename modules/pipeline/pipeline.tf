@@ -11,7 +11,8 @@ module "policies" {
 }
 
 
-module "build" {
+module "codebuild" {
+  depends_on     = [module.policies]
   source         = "../codebuild"
   project_name   = module.global_variables.name_prefix
   service_role   = module.policies.codebuild_service_role_arn
@@ -39,8 +40,9 @@ module "build" {
 }
 
 resource "aws_codepipeline" "pipeline_template" {
-  name     = module.global_variables.name_prefix
-  role_arn = module.policies.codepipline_service_role_arn
+  depends_on = [module.codebuild]
+  name       = module.global_variables.name_prefix
+  role_arn   = module.policies.codepipline_service_role_arn
 
   artifact_store {
     location = local.artifact_store

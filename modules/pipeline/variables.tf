@@ -8,9 +8,9 @@ variable "codestar_connection_arn" {
 
 locals {
   artifact_store = (
-      module.global_variables.env == "SIT" ?
-      "codepipeline-eu-west-1-136679055017" :
-      "codepipeline-eu-west-1-757399681483"         # For UAT/PROD
+    module.global_variables.env == "SIT" ?
+    "codepipeline-eu-west-1-136679055017" :
+    "codepipeline-eu-west-1-757399681483" # For UAT/PROD
   )
 }
 
@@ -18,35 +18,35 @@ locals {
 locals {
   stages = [
     {
-      name   = "Source"
+      name = "Source"
       action = [
         {
           run_order        = 1
           category         = "Source"
           name             = "Source"
-          owner            = "ThirdParty"                 # "AWS", "ThirdParty" for Github/Bitbucket
-          provider         = "CodeStarSourceConnection"   # Other options = "GitHub", "Bitbucket", "CodeCommit"
+          owner            = "ThirdParty"               # "AWS", "ThirdParty" for Github/Bitbucket
+          provider         = "CodeStarSourceConnection" # Other options = "GitHub", "Bitbucket", "CodeCommit"
           version          = "2"
           input_artifacts  = []
           output_artifacts = ["SourceArtifacts"]
-          configuration    = {
-            ConnectionArn    = var.codestar_connection_arn
+          configuration = {
+            ConnectionArn = var.codestar_connection_arn
             BranchName = (
-                    module.global_variables.env == "Production" ?
-                    "master" :
-                    (module.global_variables.env == "UAT" ?
-                    "develop" :
-                    "sit"
-                    )
-                    )
-#            OutputArtifactFormat = "CODEBUILD_CLONE_REF"
-            RepositoryName       = var.repo_name
-            ProjectName          = null
+              module.global_variables.env == "Production" ?
+              "master" :
+              (module.global_variables.env == "UAT" ?
+                "develop" :
+                "sit"
+              )
+            )
+            #            OutputArtifactFormat = "CODEBUILD_CLONE_REF"
+            RepositoryName = var.repo_name
+            ProjectName    = null
           }
         }
       ]
-    }, {
-      name   = "Build"
+      }, {
+      name = "Build"
       action = [
         {
           run_order        = 2
@@ -57,11 +57,11 @@ locals {
           version          = "1"
           input_artifacts  = ["SourceArtifacts"]
           output_artifacts = ["BuildArtifact"]
-          configuration    = {
-#            BranchName           = null
-#            OutputArtifactFormat = null
-#            RepositoryName       = null
-            ProjectName          = module.build.codebuild_project_name
+          configuration = {
+            #            BranchName           = null
+            #            OutputArtifactFormat = null
+            #            RepositoryName       = null
+            ProjectName = module.codebuild.codebuild_project_name
           }
         }
       ]
