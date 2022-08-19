@@ -38,5 +38,33 @@ module "build" {
 
 }
 
+resource "aws_codepipeline" "pipeline_template" {
+  name     = module.global_variables.name_prefix
+  role_arn = module.policies.codepipline_service_role_arn
 
+  artifact_store {
+    location = local.artifact_store
+    type     = "S3"
+  }
 
+  dynamic "stage" {
+    for_each = local.stages
+    content {
+      name = stage.value.name
+      dynamic "action" {
+        for_each = stage.value.action
+        content {
+          name             = action.value.name
+          category         = action.value.category
+          owner            = action.value.owner
+          provider         = action.value.provider
+          version          = action.value.version
+          run_order        = action.value.run_order
+          input_artifacts  = action.value.input_artifacts
+          output_artifacts = action.value.output_artifacts
+          configuration    = action.value.configuration
+        }
+      }
+    }
+  }
+}

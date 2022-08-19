@@ -9,4 +9,10 @@ Codebuild:
 - add AWS secrets policy
 
 
+Things to think about:
+- Custom block/module to provide additional environment vars for codebuild 
+- Global vars module - replace hardcoded workspace name from the variables
+- Codepipeline - local block for stages - can it be optimised in any sense?
+
+
 

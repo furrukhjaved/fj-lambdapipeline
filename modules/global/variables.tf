@@ -124,6 +124,7 @@ variable "environment_vars_type" {
   default     = ["PLAINTEXT", "SECRETS_MANAGER", "PARAMETER_STORE"]
 }
 
+
 variable "db_name" {
   type = map(string)
   default = {
