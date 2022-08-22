@@ -38,12 +38,3 @@ output "app_count" {
 output "db_name" {
   value = var.db_name[terraform.workspace]
 }
-
-
-/*output "cloudfront_certificate_arn" {
-  value = var.cloudfront_certificate_arn
-}*/
-
-/*output "alb_certificate_arn" {
-  value = var.alb_certificate_arn
-}*/
