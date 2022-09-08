@@ -1,29 +1,30 @@
 output "name_prefix" {
-  value = var.name_prefix[terraform.workspace]
-}
-
-output "account_id" {
-  value = var.account_id[terraform.workspace]
+  value = local.name_prefix
 }
 
 output "env" {
-  value = var.env[terraform.workspace]
+  value = var.env[local.name_prefix]
 }
+
+output "account_id" {
+  value = var.account_id[local.env[0]]
+}
+
 
 output "AWS_DEFAULT_REGION" {
   value = var.AWS_DEFAULT_REGION
 }
 
 output "public_subnet_ids" {
-  value = var.public_subnet_ids[terraform.workspace]
+  value = var.public_subnet_ids[local.env[0]]
 }
 
 output "private_subnet_ids" {
-  value = var.private_subnet_ids[terraform.workspace]
+  value = var.private_subnet_ids[local.env[0]]
 }
 
 output "default_vpc_id" {
-  value = var.default_vpc_id[terraform.workspace]
+  value = var.default_vpc_id[local.env[0]]
 }
 
 output "environment_vars_type" {
@@ -36,5 +37,5 @@ output "app_count" {
 }
 
 output "db_name" {
-  value = var.db_name[terraform.workspace]
+  value = var.db_name[local.env[0]]
 }

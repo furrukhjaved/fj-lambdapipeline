@@ -1,10 +1,10 @@
 terraform {
-  backend "remote" {
+  cloud {
     hostname     = "app.terraform.io"
     organization = "boohoo-devops"
 
     workspaces {
-      prefix = "fj-lambdapipeline-" # change to your current workspace
+      tags = ["name:fj-lambdapipeline"] # change to your current workspace
     }
 
   }
@@ -22,7 +22,7 @@ provider "aws" {
   region = module.global_variables.AWS_DEFAULT_REGION
   default_tags {
     tags = {
-      Application = module.global_variables.name_prefix
+      Application = substr(module.global_variables.name_prefix, 4, length(module.global_variables.name_prefix))
       Environment = module.global_variables.env
     }
   }

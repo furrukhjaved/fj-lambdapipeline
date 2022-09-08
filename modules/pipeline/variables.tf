@@ -39,7 +39,7 @@ locals {
                 "sit"
               )
             )
-            #            OutputArtifactFormat = "CODEBUILD_CLONE_REF"
+            # OutputArtifactFormat = "CODEBUILD_CLONE_REF"
             RepositoryName = var.repo_name
             ProjectName    = null
           }

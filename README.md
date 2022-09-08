@@ -12,7 +12,11 @@ Codebuild:
 Things to think about:
 - Custom block/module to provide additional environment vars for codebuild 
 - Global vars module - replace hardcoded workspace name from the variables
+  - Add local to strip off the prefix of env
 - Codepipeline - local block for stages - can it be optimised in any sense?
 
+
+
+env         = substr(local.name_prefix, 3, length(local.name_prefix))
 
 
