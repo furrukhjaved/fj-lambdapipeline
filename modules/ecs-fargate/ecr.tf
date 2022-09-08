@@ -7,21 +7,5 @@ resource "aws_ecr_repository" "ecr_repo" {
 
 resource "aws_ecr_repository_policy" "policy" {
   repository = aws_ecr_repository.ecr_repo.name
-  policy     = <<EOF
-{
-    "Version": "2008-10-17",
-    "Statement": [
-        {
-            "Sid": "",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": [
-              "ecr:GetDownloadUrlForLayer",
-              "ecr:BatchGetImage",
-              "ecr:BatchCheckLayerAvailability"
-            ]
-        }
-    ]
-}
-EOF
+  policy     = module.policies.ecr_role_policy
 }

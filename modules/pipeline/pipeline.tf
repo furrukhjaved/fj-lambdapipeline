@@ -64,7 +64,7 @@ resource "aws_codepipeline" "pipeline_template" {
           run_order        = action.value.run_order
           input_artifacts  = action.value.input_artifacts
           output_artifacts = action.value.output_artifacts
-          configuration    = action.value.configuration
+          configuration     = action.value.configuration
         }
       }
     }

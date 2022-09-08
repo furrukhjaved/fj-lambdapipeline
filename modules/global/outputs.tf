@@ -39,3 +39,7 @@ output "app_count" {
 output "db_name" {
   value = var.db_name[local.env[0]]
 }
+
+output "ecs_cluster_name" {
+  value = var.ecs_cluster_name[local.env[0]]
+}

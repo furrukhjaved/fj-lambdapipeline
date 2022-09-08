@@ -142,6 +142,16 @@ variable "db_name" {
   }
 }
 
+variable "ecs_cluster_name" {
+  description = "Define the ECS cluster name as per account ID"
+  type        = map(string)
+  default = {
+    prd = "764895352979" #SIT - This needs to be replaced by Main acc's VPC eu-west-1
+    uat = "397446452146"
+    sit = "764895352979" #SIT
+  }
+}
+
 
 
 /*

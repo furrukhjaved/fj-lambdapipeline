@@ -9,3 +9,7 @@ output "iam_policy_arns" {
 output "codepipline_service_role_arn" {
   value = aws_iam_role.codepipeline_service_role.arn
 }
+
+output "ecr_role_policy" {
+  value = aws_iam_policy.ecr_role_policy.arn
+}
